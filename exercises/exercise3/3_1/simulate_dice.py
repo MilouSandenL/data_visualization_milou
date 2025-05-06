@@ -5,7 +5,7 @@ from taipy import Gui
 import taipy.gui.builder as tgb
 
 num_dices = 5
-num_rows = 1000
+num_throws = 1000
 
 df = pd.DataFrame()
 mean_theoretical = 3.5
@@ -30,5 +30,18 @@ def simulate_dice(state):
 with tgb.Page() as page:
     tgb.text("# DICE SIMULATIONS", mode="md")
     
-    with tgb.layout(columns="1 1")
+    with tgb.layout(columns="1 1"):
+        with tgb.part():
+            tgb.table("{df}", page_size=10, rebuild=True)
+            tgb.text("Number of dices chosen {num_throws}")
+            tgb.slider("{num_dices}", min=1, max=10)
+            
+            tgb.text("number throws {num_throws}")
+            tgb.slider("{num_throws}", min=100, max=50000)
+            
+            tgb.button("SIMULATE", on_action=simulate_dice)
+            
+        with tgb.part():
+            with tgb.layout(columns="1 1 1"):
+                tgb.part().text("")
     
