@@ -31,3 +31,4 @@ with tgb.Page() as page:
     tgb.text("# DICE SIMULATIONS", mode="md")
     
     with tgb.layout(columns="1 1")
+    
